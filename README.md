@@ -46,13 +46,16 @@ You need a C compiler to build.
 
 ### An Example for UNIX-like OS:
 
-- `./now-aes.exe encrypt ~/input.dat ~/encrypted.bin 56196c87917f0bca0c209346abb4c05f`
-- `./now-aes.exe decrypt ~/encrypted.bin ~/output.dat 56196c87917f0bca0c209346abb4c05f`
+- **Optional**: get an MD5 string as the key string: `md5sum FILE`(GNU/Linux) or `md5 FILE`(macOS)
+- **Encryption**: `./now-aes.exe encrypt ~/input.dat ~/encrypted.bin 56196c87917f0bca0c209346abb4c05f`
+- **Decryption**: `./now-aes.exe decrypt ~/encrypted.bin ~/output.dat 56196c87917f0bca0c209346abb4c05f`
 
 ### An Example for Windows:
 
-- `.\now-aes.exe encrypt c:\users\public\input.dat c:\users\public\encrypted.bin 56196c87917f0bca0c209346abb4c05f`
-- `.\now-aes.exe decrypt c:\users\public\encrypted.bin c:\users\public\output.dat 56196c87917f0bca0c209346abb4c05f`
+
+- **Optional**: get an MD5 string as the key string: `certutil -hashfile FILE MD5`
+- **Encryption**: `.\now-aes.exe encrypt c:\users\public\input.dat c:\users\public\encrypted.bin 56196c87917f0bca0c209346abb4c05f`
+- **Decryption**: `.\now-aes.exe decrypt c:\users\public\encrypted.bin c:\users\public\output.dat 56196c87917f0bca0c209346abb4c05f`
 
 **You can validate the encryption/decryption by compare the hashes (MD5 or SHA) of the original file and the encrypted+decrypted file.**
 
