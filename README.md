@@ -6,7 +6,7 @@ The project [HPC-NOW](https://github.com/zhenrong-wang/hpc-now) needs to handle 
 
 **DESCLAIMER**
 
-**Encryption/Decryption is extremely important and critical for information security. This project is released under the MIT terms, which means there is no WARRANTY. It is always recommended to use widely-validated implementations such as openSSL.**
+**Encryption/Decryption is extremely important and critical for information security. This project is released under the MIT terms, which means there is no WARRANTY. It is always recommended to use widely-validated implementations such as OpenSSL.**
 
 # 2. Brief Intro
 
@@ -54,7 +54,7 @@ You need a C compiler to build.
 - `.\now-aes.exe encrypt c:\users\public\input.dat c:\users\public\encrypted.bin 56196c87917f0bca0c209346abb4c05f`
 - `.\now-aes.exe decrypt c:\users\public\encrypted.bin c:\users\public\output.dat 56196c87917f0bca0c209346abb4c05f`
 
-**You can validate the encryption/decryption by compare the hashes(MD5 or SHA) of the original file and the encrypted+decrypted file.**
+**You can validate the encryption/decryption by compare the hashes (MD5 or SHA) of the original file and the encrypted+decrypted file.**
 
 # 4 Bugs and Communications
 
