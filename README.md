@@ -35,7 +35,7 @@ You need a C compiler to build.
 ### 3.1.2 Build Guide
 
 1. Use `git` to clone this code: `git clone https://github.com/zhenrong-wang/now-aes-ecb.git`
-2. Build command example: `gcc now-crypto-aes.c -Ofast -fPIC -march=native -o now-aes.exe`
+2. Build command example: `gcc now-crypto-aes.c -Wall -Ofast -fPIC -maes -msse4 -o now-aes.exe`
 
 ## 3.2 Run
 
