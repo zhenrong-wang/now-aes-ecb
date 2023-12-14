@@ -4,6 +4,10 @@
 
 The project [HPC-NOW](https://github.com/zhenrong-wang/hpc-now) needs to handle sensitive information. Therefore, we implemented an AES module based on the [NIST standard FIPS-197](https://csrc.nist.gov/pubs/fips/197/final)
 
+**DESCLAIMER**
+
+**Encryption/Decryption is extremely important and critical for information security. This project is released under the MIT terms, which means there is no WARRANTY. It is always recommended to use widely-validated implementations such as openSSL.**
+
 # 2. Brief Intro
 
 **Program Name**: NOW-AES: an AES implementation in the project HPC-NOW
