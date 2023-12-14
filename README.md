@@ -8,7 +8,7 @@ The project [HPC-NOW](https://github.com/zhenrong-wang/hpc-now) needs to handle 
 
 - **Encryption/Decryption is extremely important and critical for information security. This project is released under the MIT terms, which means there is no WARRANTY. It is always recommended to use widely-validated implementations such as OpenSSL.**
 - This is a serial program, meaning that for large files, the encryption/decryption would be slow. Looking for parallelism methods and implement it. 
-- From preliminary tests, files encrypted by this program can be decrypted correctly by OpenSSL using the command `openssl aes-ecb -d -K KEY_STRING -in INPUT_FILE -out OUT_FILE`.
+- From preliminary tests, files encrypted by this program can be decrypted correctly by OpenSSL using the command `openssl aes-128-ecb -d -K KEY_STRING -in INPUT_FILE -out OUT_FILE`.
 
 # 2. Brief Intro
 
