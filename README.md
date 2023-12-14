@@ -1,4 +1,4 @@
-# NOW-AES: An AES-ECB Implementation in the Project [HPC-NOW](https://github.com/zhenrong-wang/hpc-now)
+# NOW-AES: An AES-128-ECB Implementation in the Project [HPC-NOW](https://github.com/zhenrong-wang/hpc-now)
 
 # 1. Background
 
@@ -12,7 +12,7 @@ The project [HPC-NOW](https://github.com/zhenrong-wang/hpc-now) needs to handle 
 
 # 2. Brief Intro
 
-**Program Name**: NOW-AES: an AES implementation in the project HPC-NOW
+**Program Name**: NOW-AES: an AES-128-ECB implementation in the project HPC-NOW
 
 **Purpose**: file-level encryption/decryption.
 
