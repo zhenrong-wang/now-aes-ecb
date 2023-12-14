@@ -1,8 +1,8 @@
-# NOW-AES: an AES implementation in the project [HPC-NOW](https://github.com/zhenrong-wang/hpc-now)
+# NOW-AES: An AES-ECB Implementation in the Project [HPC-NOW](https://github.com/zhenrong-wang/hpc-now)
 
 # 1. Background
 
-The project [HPC-NOW](https://github.com/zhenrong-wang/hpc-now) needs to handle sensitive information. Therefore, we implemented an AES module based on the [NIST standard FIPS-197](https://csrc.nist.gov/pubs/fips/197/final)
+The project [HPC-NOW](https://github.com/zhenrong-wang/hpc-now) needs to handle sensitive information. Therefore, we implemented an AES module based on the [NIST standard FIPS-197](https://csrc.nist.gov/pubs/fips/197/final). Any further change in the project HPC-NOW will be syncronized to this repo.
 
 **DESCLAIMER**
 
