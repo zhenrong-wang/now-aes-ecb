@@ -1,2 +1,2 @@
-# now-aes-ecb
-This is an AES-ECB implementation in the HPC-NOW project.
+# NOW-AES: an AES implementation in the project HPC-NOW
+
