@@ -1,4 +1,4 @@
-# NOW-AES: an AES implementation in the project HPC-NOW
+# NOW-AES: an AES implementation in the project [HPC-NOW](https://github.com/zhenrong-wang/hpc-now)
 
 # 1. Background
 
@@ -29,94 +29,28 @@ You need a C compiler to build.
 ### 3.1.2 Build Guide
 
 1. Use `git` to clone this code: `git clone https://github.com/zhenrong-wang/now-aes-ecb.git`
-2. Build command example: `gcc now-crypto-aes.c -o my-if97.exe -lm`
-
-Note: the `-lm` may not be valid for Windows or macOS. It is necessary for GNU/Linux distros.
+2. Build command example: `gcc now-crypto-aes.c -o now-aes.exe`
 
 ## 3.2 Run
 
-### Run the Test Data
+**COMMAND FORMAT** `./now-aes.exe OPTION INPUT_FILE OUTPUT_FILE MD5_LIKE_STRING`
 
-Suppose you have followed the steps above and built the my-if97.exe in the source code folder.
-
-- `cd test`
-- `../my-if97.exe` (**UNIX-like OS**) or `..\my-if97.exe` (**Microsoft Windows**)
-
-If you see the output below, congrats, you've built the binary successfully.
-
-    ...
-
-    1       25000000.00000000       873.00000000
-    1       23960000.00000000       811.00000000
-    1       6000000.00000000        811.00000000
-    1       6000000.00000000        573.00000000
-
-    # Calculation finished. Please check _properties.dat for results.
-    # Press any key to exit.
-
-    @ Any problems found, please contact the author.
-    @ Zhenrong Wang, zhenrongwang@live.com.
+- **OPTION**: Can only be **decrypt** or **encrypt**
+- **INPUT_FILE**: The path of the input file. E.g. `~/input.zip`
+- **OUTPUT_FILE**: The path of the output file. E.g. `~/output.zip.enc` or `~/output.zip` 
+- **MD5_LIKE_STRING**: This program read an MD5 string and assemble a 128-bit (16 byte) encryption key.
 
 ### An Example for UNIX-like OS:
 
-Suppose the working directory is `/home/amber/water-steam/`
-
-Suppose the absolute path of the executable is `/home/amber/bin/my-if97.exe`
-
-- `$ cd /home/amber/water-steam/`
-- `$ vim _input.dat` # Create an input file named '**_input.dat**' with some input data (See Section 3.3 below)
-- `$ /home/amber/bin/my-if97.exe`
+- `./now-aes.exe encrypt ~/input.dat ~/encrypted.bin 56196c87917f0bca0c209346abb4c05f`
+- `./now-aes.exe decrypt ~/encrypted.bin ~/output.dat 56196c87917f0bca0c209346abb4c05f`
 
 ### An Example for Windows:
 
-Suppose the working directory is `C:\Users\amber\water-steam\`
+- `.\now-aes.exe encrypt c:\users\public\input.dat c:\users\public\encrypted.bin 56196c87917f0bca0c209346abb4c05f`
+- `.\now-aes.exe decrypt c:\users\public\encrypted.bin c:\users\public\output.dat 56196c87917f0bca0c209346abb4c05f`
 
-Suppose the absolute path of the executable is `C:\Users\amber\bin\my-if97.exe`
-
-- Open a Command Prompt Window
-- `cd C:\Users\amber\water-steam\`
-- `notepad _input.dat`
-- `C:\Users\amber\bin\my-if97.exe`
-
-## 3.3 Use
-
-For the **_input.dat** file, you need to input the data in lines. A single line refers to a point. Strict format:
-
-`POINT_TYPE(int),PARAM1(float/double),PARAM2 (float/double)` 
-
-**Please separate the params by a comma ','**
-
-POINT_TYPE: 
-
-- 1 Pressure and Temperature
-- 2 Pressure and Density
-- 3 Pressure and Specific Internal Energy
-- 4 Pressure and Specific Enthalpy
-- 5 Pressure and Specific Entropy
-- 6 Temperature and Density
-- 7 Temperature and Specific Internal Energy
-- 8 Temperature and Specific Enthalpy
-- 9 Temperature and Specific Entropy
-- 10 Specific Enthalpy and Specific Entropy
-- 11 Pressure and Steam Dryness
-- 12 Temperature and Steam Dryness
-
-Example: `1,100000,300`
-
-Example: `1,1e5,3e2`
-
-Units:
-
-- Pressure(p): Pa
-- Temperature(t): K
-- Density(r): kg/m3
-- Specific Internal Energy(u): J/kg
-- Specific Enthalpy(h): J/kg
-- Specific Entropy(s): J/(kg.K)
-
-## 3.4 Output
-
-The program writes out a file named '**_properties.dat**' in the working directory. 
+**You can validate the encryption/decryption by compare the hashes(MD5 or SHA) of the original file and the encrypted+decrypted file.**
 
 # 4 Bugs and Communications
 
