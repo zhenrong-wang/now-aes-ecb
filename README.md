@@ -12,7 +12,7 @@ The project [HPC-NOW](https://github.com/zhenrong-wang/hpc-now) needs to handle 
 
 **Program Name**: NOW-AES: an AES implementation in the project HPC-NOW
 
-**Purpose**: block-level encryption/decryption.
+**Purpose**: file-level encryption/decryption.
 
 **License**: MIT
 
