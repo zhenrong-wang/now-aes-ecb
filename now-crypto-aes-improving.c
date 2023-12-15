@@ -19,6 +19,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <time.h>
 
 #define CRYPTO_VERSION "0.3.0"
 
@@ -255,13 +256,18 @@ void InvSubBytes(uint_8bit (*state)[4]){
 void MixColumns(uint_8bit (*state)[4]){
     uint_8bit temp[4][4];
     uint_8bit s0,s1,s2,s3;
-    int i,j;
-    for(i=0;i<4;i++){
+    int i,j,k;
+    memcpy(temp,state,16*sizeof(uint_8bit)); //Use memcpy to eliminate the loop below
+    /*for(i=0;i<4;i++){
         for(j=0;j<4;j++){
             temp[i][j]=state[i][j];
         }
-    }
+    }*/
     for(i=0;i<4;i++){
+        //state[i][0]=GaloisMultipleGeneral(MixColumnMatrix[i][0],temp[0][0])^GaloisMultipleGeneral(MixColumnMatrix[i][1],temp[1][0])^GaloisMultipleGeneral(MixColumnMatrix[i][2],temp[2][0])^GaloisMultipleGeneral(MixColumnMatrix[i][3],temp[3][0]);
+        //state[i][1]=GaloisMultipleGeneral(MixColumnMatrix[i][0],temp[0][1])^GaloisMultipleGeneral(MixColumnMatrix[i][1],temp[1][1])^GaloisMultipleGeneral(MixColumnMatrix[i][2],temp[2][1])^GaloisMultipleGeneral(MixColumnMatrix[i][3],temp[3][1]);
+        //state[i][2]=GaloisMultipleGeneral(MixColumnMatrix[i][0],temp[0][2])^GaloisMultipleGeneral(MixColumnMatrix[i][1],temp[1][2])^GaloisMultipleGeneral(MixColumnMatrix[i][2],temp[2][2])^GaloisMultipleGeneral(MixColumnMatrix[i][3],temp[3][2]);
+        //state[i][3]=GaloisMultipleGeneral(MixColumnMatrix[i][0],temp[0][3])^GaloisMultipleGeneral(MixColumnMatrix[i][1],temp[1][3])^GaloisMultipleGeneral(MixColumnMatrix[i][2],temp[2][3])^GaloisMultipleGeneral(MixColumnMatrix[i][3],temp[3][3]);
         for(j=0;j<4;j++){
             s0=GaloisMultipleGeneral(MixColumnMatrix[i][0],temp[0][j]);
             s1=GaloisMultipleGeneral(MixColumnMatrix[i][1],temp[1][j]);
@@ -276,12 +282,17 @@ void InvMixColums(uint_8bit (*state)[4]){
     int i,j;
     uint_8bit temp[4][4];
     uint_8bit s0,s1,s2,s3;
-    for(i=0;i<4;i++){
+    memcpy(temp,state,16*sizeof(uint_8bit)); //Use memcpy to eliminate the loop below
+    /*for(i=0;i<4;i++){
         for(j=0;j<4;j++){
             temp[i][j]=state[i][j];
         }
-    }
+    }*/
     for(i=0;i<4;i++){
+        //state[i][0]=GaloisMultipleGeneral(MixColumnMatrix[i][0],temp[0][0])^GaloisMultipleGeneral(MixColumnMatrix[i][1],temp[1][0])^GaloisMultipleGeneral(MixColumnMatrix[i][2],temp[2][0])^GaloisMultipleGeneral(MixColumnMatrix[i][3],temp[3][0]);
+        //state[i][1]=GaloisMultipleGeneral(MixColumnMatrix[i][0],temp[0][1])^GaloisMultipleGeneral(MixColumnMatrix[i][1],temp[1][1])^GaloisMultipleGeneral(MixColumnMatrix[i][2],temp[2][1])^GaloisMultipleGeneral(MixColumnMatrix[i][3],temp[3][1]);
+        //state[i][2]=GaloisMultipleGeneral(MixColumnMatrix[i][0],temp[0][2])^GaloisMultipleGeneral(MixColumnMatrix[i][1],temp[1][2])^GaloisMultipleGeneral(MixColumnMatrix[i][2],temp[2][2])^GaloisMultipleGeneral(MixColumnMatrix[i][3],temp[3][2]);
+        //state[i][3]=GaloisMultipleGeneral(MixColumnMatrix[i][0],temp[0][3])^GaloisMultipleGeneral(MixColumnMatrix[i][1],temp[1][3])^GaloisMultipleGeneral(MixColumnMatrix[i][2],temp[2][3])^GaloisMultipleGeneral(MixColumnMatrix[i][3],temp[3][3]);
         for(j=0;j<4;j++){
             s0=GaloisMultipleGeneral(InvMixColumnMatrix[i][0],temp[0][j]);
             s1=GaloisMultipleGeneral(InvMixColumnMatrix[i][1],temp[1][j]);
@@ -323,11 +334,12 @@ int now_AES_ECB_encryption(uint_8bit (*state)[4], uint_8bit (*out)[4], now_aes_k
     SubBytes(state);
     ShiftRows(state);
     AddRoundKey(state,key_pointer);
-    for(i=0;i<4;i++){
+    memcpy(out,state,16*sizeof(uint_8bit));
+    /*for(i=0;i<4;i++){
         for(j=0;j<4;j++){
             out[i][j]=state[i][j];
         }
-    }
+    }*/
     return 0;
 }
 
@@ -349,11 +361,12 @@ int now_AES_ECB_decryption(uint_8bit (*state)[4], uint_8bit (*out)[4], now_aes_k
     InvShiftRows(state);
     InvSubBytes(state);
     AddRoundKey(state,key_pointer);
-    for(i=0;i<4;i++){
+    memcpy(out,state,16*sizeof(uint_8bit));
+    /*for(i=0;i<4;i++){
         for(j=0;j<4;j++){
             out[i][j]=state[i][j];
         }
-    }
+    }*/
     return 0;
 }
 
@@ -699,6 +712,8 @@ int file_encryption_decryption(char* option, char* orig_file, char* target_file,
  * return 0: Normally exit.
  */
 int main(int argc,char *argv[]){
+    clock_t start,stop;
+    start=clock();
     printf("[ -INFO- ] AES-128 ECB crypto module for HPC-NOW. Version: %s\n",CRYPTO_VERSION);
     printf("|          Shanghai HPC-NOW Technologies. All right reserved. License: MIT\n");
     int run_flag=0;
@@ -736,6 +751,8 @@ int main(int argc,char *argv[]){
         return 15;
     }
     else{
+        stop=clock();
+        printf("[TIME] %lfsec(s).\n",(double)(stop-start)*1.0/CLOCKS_PER_SEC);
         return 0; 
     }
 }
