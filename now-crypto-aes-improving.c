@@ -76,20 +76,6 @@ const uint_32bit round_con[10]={
     0x01000000, 0x02000000, 0x04000000, 0x08000000, 0x10000000, 0x20000000, 0x40000000, 0x80000000, 0x1B000000, 0x36000000
 };
 
-const uint_8bit MixColumnMatrix[4][4] = {
-    {0x02, 0x03, 0x01, 0x01},
-    {0x01, 0x02, 0x03, 0x01},
-    {0x01, 0x01, 0x02, 0x03},
-    {0x03, 0x01, 0x01, 0x02}
-};
-
-const uint_8bit InvMixColumnMatrix[4][4] = {
-    {0x0E, 0x0B, 0x0D, 0x09},
-    {0x09, 0x0E, 0x0B, 0x0D},
-    {0x0D, 0x09, 0x0E, 0x0B},
-    {0x0B, 0x0D, 0x09, 0x0E}
-};
-
 //Get an 8-bit(1 byte) from a given 32 bit number.
 uint_8bit get_byte(uint_32bit a, unsigned int n){
     return (a>>(8*n))&0xFF;
@@ -254,9 +240,15 @@ void InvSubBytes(uint_8bit (*state)[4]){
 }
 
 void MixColumns(uint_8bit (*state)[4]){
+    const uint_8bit MixColumnMatrix[4][4] = {
+        {0x02, 0x03, 0x01, 0x01},
+        {0x01, 0x02, 0x03, 0x01},
+        {0x01, 0x01, 0x02, 0x03},
+        {0x03, 0x01, 0x01, 0x02}
+    };
     uint_8bit temp[4][4];
     uint_8bit s0,s1,s2,s3;
-    int i,j,k;
+    int i,j;
     memcpy(temp,state,16*sizeof(uint_8bit)); //Use memcpy to eliminate the loop below
     /*for(i=0;i<4;i++){
         for(j=0;j<4;j++){
@@ -279,6 +271,12 @@ void MixColumns(uint_8bit (*state)[4]){
 }
 
 void InvMixColums(uint_8bit (*state)[4]){
+    const uint_8bit InvMixColumnMatrix[4][4] = {
+        {0x0E, 0x0B, 0x0D, 0x09},
+        {0x09, 0x0E, 0x0B, 0x0D},
+        {0x0D, 0x09, 0x0E, 0x0B},
+        {0x0B, 0x0D, 0x09, 0x0E}
+    };
     int i,j;
     uint_8bit temp[4][4];
     uint_8bit s0,s1,s2,s3;
@@ -320,7 +318,7 @@ int now_AES_ECB_encryption(uint_8bit (*state)[4], uint_8bit (*out)[4], now_aes_k
     if(state==NULL||out==NULL||AES_key==NULL){
         return -1;
     }
-    int i,j;
+    int i;
     uint_32bit* key_pointer=AES_key->encryption_key;
     AddRoundKey(state,key_pointer);
     for(i=1;i<10;i++){
@@ -347,7 +345,7 @@ int now_AES_ECB_decryption(uint_8bit (*state)[4], uint_8bit (*out)[4], now_aes_k
     if(AES_key==NULL||state==NULL||out==NULL){
         return -1;
     }
-    int i,j;
+    int i;
     uint_32bit* key_pointer=AES_key->encryption_key+40;
     AddRoundKey(state,key_pointer);
     for(i=1;i<10;i++){
