@@ -20,6 +20,12 @@ The project [HPC-NOW](https://github.com/zhenrong-wang/hpc-now) needs to handle 
 
 **Technical Reference**: [NIST standard FIPS-197](https://csrc.nist.gov/pubs/fips/197/final)
 
+**Extras**: As you can see in the source code, there are 2 different versions:
+- 128-rw: Read 128 bit from the input file - encrypt/decrypt the 128 bit - write 128 bit to the output file, until the end of the input file.
+- batch-rw: Load the input file to memory in batch, and then encrypt/decrypt to a memory buffer, then write the buffer to output file in batch.
+
+It turns out the batch-rw improves the performance by 20%.
+
 # 3. How-To: Build, Run, and Use
 
 ## 3.1 Build
@@ -35,7 +41,7 @@ You need a C compiler to build.
 ### 3.1.2 Build Guide
 
 1. Use `git` to clone this code: `git clone https://github.com/zhenrong-wang/now-aes-ecb.git`
-2. Build command example: `gcc now-crypto-aes.c -Wall -Ofast -fPIC -maes -msse4 -o now-aes.exe`
+2. Build command example: `gcc now-crypto-aes.c -Wall -Ofast -o now-aes.exe`. The compiler flag `-Ofast` is extremely important for performance!
 
 ## 3.2 Run
 
