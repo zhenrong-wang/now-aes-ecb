@@ -21,7 +21,7 @@ The project [HPC-NOW](https://github.com/zhenrong-wang/hpc-now) needs to handle 
 **Technical Reference**: [NIST standard FIPS-197](https://csrc.nist.gov/pubs/fips/197/final)
 
 **Extras**: As you can see in the source code, there are 2 different versions:
-- 128-rw: Read 128 bit from the input file - encrypt/decrypt the 128 bit - write 128 bit to the output file, until the end of the input file.
+- 128bit-rw: Read 128 bit from the input file - encrypt/decrypt the 128 bit - write 128 bit to the output file, until the end of the input file.
 - batch-rw: Load the input file to memory in batch, and then encrypt/decrypt to a memory buffer, then write the buffer to output file in batch.
 
 It turns out the batch-rw improves the performance by 20%.
