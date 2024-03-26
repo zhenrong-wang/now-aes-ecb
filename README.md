@@ -34,8 +34,8 @@ It turns out the batch-rw improves the performance by 20%.
 
 You need a C compiler to build. 
 
-- For Microsoft Windows users, [mingw](https://sourceforge.net/projects/mingw/) is a good choice
-- For GNU/Linux Distro or other *nix users, the [GNU Compiler Collections](https://gcc.gnu.org/), known as gcc, is a perfect one
+- For Microsoft Windows users, [mingw-w64](https://sourceforge.net/projects/mingw-w64/) is required.
+- For GNU/Linux Distro or other *nix users, the [GNU Compiler Collections](https://gcc.gnu.org/), known as gcc, is recommended.
 - For macOS users, [clang](https://clang.llvm.org/) is easy to install and use (brew is not needed to install clang on macOS).
 
 ### 3.1.2 Build Guide
